@@ -21,18 +21,19 @@ const OneMessage: React.FC<Props> = ({author, message, image}) => {
   }
 
   return (
-    <Card sx={{ maxWidth: 500, margin: 'auto', height: '100%', display: 'flex', flexDirection: 'column' }}>
-      <ImageCardMedia image={cardImage} />
-      <CardContent sx={{ flexGrow: 1 }}>
-        <Typography variant="body1" sx={{ mb: 2 }}>
+    <Card sx={{maxWidth: 500, margin: 'auto', height: '100%', display: 'flex', flexDirection: 'column'}}>
+      {image && <ImageCardMedia image={cardImage}/>}
+
+      <CardContent sx={{flexGrow: 1}}>
+        <Typography variant="body1" sx={{mb: 2}}>
           {message}
         </Typography>
       </CardContent>
-      <Box sx={{ display: 'flex', alignItems: 'center', p: 2, mt: 'auto' }}>
+      <Box sx={{display: 'flex', alignItems: 'center', p: 2, mt: 'auto'}}>
         <Avatar aria-label="contact">
           {author ? author[0] : 'A'}
         </Avatar>
-        <Typography variant="body2" sx={{ ml: 2 }}>
+        <Typography variant="body2" sx={{ml: 2}}>
           {author || 'Anonymous'}
         </Typography>
       </Box>
