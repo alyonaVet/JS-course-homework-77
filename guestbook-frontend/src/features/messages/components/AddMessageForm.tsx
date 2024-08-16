@@ -1,13 +1,15 @@
 import React, {ChangeEvent, useState} from 'react';
-import {Button, Grid, OutlinedInput, TextField} from '@mui/material';
+import {Grid, OutlinedInput, TextField} from '@mui/material';
 import {MessageType} from '../../../types';
 import FileInput from '../../../UI/FileInput/FileInput';
+import {LoadingButton} from '@mui/lab';
 
 interface Props {
   onSubmit: (message: MessageType) => void;
+  isLoading: boolean;
 }
 
-const AddMessageForm: React.FC<Props> = ({onSubmit}) => {
+const AddMessageForm: React.FC<Props> = ({onSubmit, isLoading}) => {
 
   const [messageData, setMessageData] = useState<MessageType>({
     author: null,
@@ -27,7 +29,7 @@ const AddMessageForm: React.FC<Props> = ({onSubmit}) => {
   };
 
   const onFileInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, files } = event.target;
+    const {name, files} = event.target;
     const value = files && files[0] ? files[0] : null;
 
     setMessageData((prevState) => ({
@@ -81,7 +83,14 @@ const AddMessageForm: React.FC<Props> = ({onSubmit}) => {
         </Grid>
       </Grid>
       <Grid item>
-        <Button variant="contained" type="submit">Send</Button>
+        <LoadingButton
+          type="submit"
+          loading={isLoading}
+          loadingPosition="center"
+          variant="contained"
+        >
+          <span>Save</span>
+        </LoadingButton>
       </Grid>
     </Grid>
   );
