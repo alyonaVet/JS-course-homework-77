@@ -1,5 +1,6 @@
 import React from 'react';
-import {Card, CardContent, Typography, Box, Avatar} from '@mui/material';
+import {Card, CardContent, Typography, Box, Avatar, styled, CardMedia} from '@mui/material';
+import {apiURL} from '../../../constants';
 
 interface Props {
   author: string | null,
@@ -8,16 +9,20 @@ interface Props {
 }
 
 const OneMessage: React.FC<Props> = ({author, message, image}) => {
+  const ImageCardMedia = styled(CardMedia)({
+    height: 0,
+    paddingTop: '56.25%',
+  });
+
+  let cardImage = '';
+
+  if (image) {
+    cardImage = apiURL + '/' + image;
+  }
+
   return (
     <Card sx={{ maxWidth: 500, margin: 'auto', height: '100%', display: 'flex', flexDirection: 'column' }}>
-      {image && (
-        <Box
-          component="img"
-          sx={{ width: '100%', height: 'auto', maxHeight: 200, objectFit: 'cover' }}
-          alt="Image"
-          src={image}
-        />
-      )}
+      <ImageCardMedia image={cardImage} />
       <CardContent sx={{ flexGrow: 1 }}>
         <Typography variant="body1" sx={{ mb: 2 }}>
           {message}
