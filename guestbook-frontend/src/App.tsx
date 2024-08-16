@@ -1,8 +1,10 @@
+import MessagePage from './features/messages/MessagePage';
+
 const App = () => {
 
     return (
         <>
-            Hello world!
+          <MessagePage />
         </>
     );
 };
